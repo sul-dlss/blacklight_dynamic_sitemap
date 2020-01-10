@@ -22,7 +22,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Solr configuration
+This feature relies on a unique hexidecimal hash field in your solr response for each document.  You can have solr automatically do this for you using the `SignatureUpdateProcessorFactory`.
+
+https://lucene.apache.org/solr/guide/8_4/update-request-processors.html
+
+See the `updateRequestProcessorChain` used in this project's `solrconfig.xml` for an example.
 
 ## Development
 
