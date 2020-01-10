@@ -20,6 +20,10 @@ Or install it yourself as:
 
     $ gem install blacklight_dynamic_sitemap
 
+Run the install generator
+
+    $ bundle exec rails generate blacklight_dynamic_sitemap:install
+
 ## Usage
 
 ### Solr configuration
