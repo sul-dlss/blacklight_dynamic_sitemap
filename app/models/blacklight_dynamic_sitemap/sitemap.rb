@@ -11,6 +11,7 @@ module BlacklightDynamicSitemap
         params: {
           q: "{!prefix f=#{hashed_id_field} v=#{id}}",
           fl: [unique_id_field, last_modified_field].join(','),
+          rows: 2_000_000, # Ensure that we do not page this result
           facet: false
         }
       ).dig('response', 'docs')
@@ -46,7 +47,7 @@ module BlacklightDynamicSitemap
 
     ##
     # Exponent used to calculate the needed number of prefix spaces to query
-    # that will effectively chunk the entire number of documents. 16 is the 
+    # that will effectively chunk the entire number of documents. 16 is the
     # number of characters in hex space (0-9, a-f)
     # Example: 16**1 = 16, 16**2 = 256, 16**3 = 4096
     # x = b**y
