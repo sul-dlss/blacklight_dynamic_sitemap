@@ -25,6 +25,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'rails', '~> 5.0'
+  spec.add_dependency 'blacklight', '> 6.0'
 
+  spec.add_development_dependency 'capybara'
   spec.add_development_dependency 'engine_cart', '~> 2.0'
+  spec.add_development_dependency 'rspec-rails'
 end

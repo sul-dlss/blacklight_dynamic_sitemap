@@ -1,7 +1,15 @@
 require "bundler/setup"
 require "blacklight_dynamic_sitemap"
 
+require 'engine_cart'
+EngineCart.load_application!
+
+require 'rspec/rails'
+require 'capybara/rspec'
+
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
+
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
 
