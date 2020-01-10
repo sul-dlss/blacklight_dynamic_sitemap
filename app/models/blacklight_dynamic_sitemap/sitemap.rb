@@ -10,7 +10,8 @@ module BlacklightDynamicSitemap
       index_connection.select(
         params: {
           q: "{!prefix f=#{hashed_id_field} v=#{id}}",
-          fl: [unique_id_field, last_modified_field].join(',')
+          fl: [unique_id_field, last_modified_field].join(','),
+          facet: false
         }
       ).dig('response', 'docs')
     end
@@ -34,7 +35,7 @@ module BlacklightDynamicSitemap
       expiration = BlacklightDynamicSitemap::Engine.config.max_documents_expiration
       Rails.cache.fetch(key, expires_in: expiration) do
         Blacklight.default_index.connection.select(
-          params: { q: '*:*', rows: 0 }
+          params: { q: '*:*', rows: 0, facet: false }
         )['response']['numFound']
       end
     end
