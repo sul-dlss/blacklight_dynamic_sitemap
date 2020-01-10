@@ -11,3 +11,5 @@
 .rspec_status
 
 Gemfile.lock
+
+.internal_test_app
