@@ -43,11 +43,30 @@ module BlacklightDynamicSitemap
       [10_000, max_documents].min # Sufficiently less than 50,000 max per sitemap
     end
 
+    ##
+    # Exponent used to calculate the needed number of prefix spaces to query
+    # that will effectively chunk the entire number of documents. 16 is the 
+    # number of characters in hex space (0-9, a-f)
+    # Example: 16**1 = 16, 16**2 = 256, 16**3 = 4096
+    # x = b**y
+    # y = logb(x)
+    # y = logb(x) = ln(x) / ln(b)
+    def exponent
+      @exponent ||= [
+        (Math.log(max_documents / average_chunk) / Math.log(16)).ceil,
+        1
+      ].max
+    end
+
+    ##
+    # Expand the number of documents used off of calculated exponent to create
+    # list of sitemaps to access in hex space (0-9, a-f)
+    # Example: (exponent as 4)
+    # ["0000", "0001", "0002", "0003"..."af74", "af75", "af76", "af77"..."fffc", "fffd", "fffe", "ffff"]
     def access_list
-      access = (Math.log(max_documents / average_chunk) / Math.log(16)).ceil
-      (0...(16**access))
+      (0...(16**exponent))
         .to_a
-        .map { |v| v.to_s(16).rjust(access, '0') }
+        .map { |v| v.to_s(16).rjust(exponent, '0') }
     end
   end
 end
