@@ -41,7 +41,7 @@ module BlacklightDynamicSitemap
     end
 
     def average_chunk
-      [10_000, max_documents].min # Sufficiently less than 50,000 max per sitemap
+      [engine_config.minimum_average_chunk, max_documents].min # Sufficiently less than 50,000 max per sitemap
     end
 
     ##
