@@ -16,11 +16,30 @@
     </updateLog>
   </updateHandler>
 
+  <updateRequestProcessorChain name="add_hashed_id">
+    <processor class="solr.processor.SignatureUpdateProcessorFactory">
+      <bool name="enabled">true</bool>
+      <str name="signatureField">hashed_id_ssi</str>
+      <bool name="overwriteDupes">false</bool>
+      <str name="fields">id</str>
+      <str name="signatureClass">solr.processor.Lookup3Signature</str>
+    </processor>
+
+    <processor class="solr.LogUpdateProcessorFactory" />
+    <processor class="solr.RunUpdateProcessorFactory" />
+  </updateRequestProcessorChain>
+
   <!-- solr lib dirs -->
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" />
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" />
 
   <dataDir>${solr.data.dir:}</dataDir>
+
+  <requestHandler name="/update" class="solr.UpdateRequestHandler">
+    <lst name="defaults">
+      <str name="update.chain">add_hashed_id</str>
+    </lst>
+  </requestHandler>
 
   <requestHandler name="search" class="solr.SearchHandler" default="true">
     <!-- default values for query parameters can be specified, these

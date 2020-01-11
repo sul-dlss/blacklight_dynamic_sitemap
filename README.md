@@ -20,9 +20,18 @@ Or install it yourself as:
 
     $ gem install blacklight_dynamic_sitemap
 
+Run the install generator
+
+    $ bundle exec rails generate blacklight_dynamic_sitemap:install
+
 ## Usage
 
-TODO: Write usage instructions here
+### Solr configuration
+This feature relies on a unique hexidecimal hash field in your solr response for each document.  You can have solr automatically do this for you using the `SignatureUpdateProcessorFactory`.
+
+https://lucene.apache.org/solr/guide/8_4/update-request-processors.html
+
+See the `updateRequestProcessorChain` used in this project's `solrconfig.xml` for an example.
 
 ## Development
 
