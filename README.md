@@ -27,7 +27,7 @@ Run the install generator
 ## Usage
 
 ### Solr configuration
-This feature relies on a unique hexidecimal hash field in your solr response for each document.  You can have solr automatically do this for you using the `SignatureUpdateProcessorFactory`.
+This feature relies on a unique hexadecimal hash field in your solr response for each document.  You can have solr automatically do this for you using the `SignatureUpdateProcessorFactory`.
 
 https://lucene.apache.org/solr/guide/8_4/update-request-processors.html
 
