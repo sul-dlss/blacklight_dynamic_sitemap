@@ -1,8 +1,14 @@
 # BlacklightDynamicSitemap
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/blacklight_dynamic_sitemap`. To experiment with that code, run `bin/console` for an interactive prompt.
+Builds dynamic sitemaps that scale for your Blacklight applications.
 
-TODO: Delete this and the text above, and describe your gem
+Based on original work here: https://github.com/sul-dlss/SearchWorks/pull/2351
+
+Concept developped by:
+@magibney
+@mejackreed
+@agazzarini
+@netsensei
 
 ## Installation
 
@@ -33,12 +39,17 @@ https://lucene.apache.org/solr/guide/8_4/update-request-processors.html
 
 See the `updateRequestProcessorChain` used in this project's `solrconfig.xml` for an example.
 
+### Configuration
+This gem offers several configuration options that can be configured in a Rails initializer.
+
+See [engine.rb](https://github.com/sul-dlss/blacklight_dynamic_sitemap/blob/master/lib/blacklight_dynamic_sitemap/engine.rb) for available configurations.
+
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake ci` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/blacklight_dynamic_sitemap.
+Bug reports and pull requests are welcome on GitHub at https://github.com/sul-dlss/blacklight_dynamic_sitemap.
