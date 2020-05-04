@@ -12,7 +12,8 @@ module BlacklightDynamicSitemap
           q: "{!prefix f=#{hashed_id_field} v=#{id}}",
           fl: [unique_id_field, last_modified_field].join(','),
           rows: 2_000_000, # Ensure that we do not page this result
-          facet: false
+          facet: false,
+          defType: 'lucene'
         }
       ).dig('response', 'docs')
     end
