@@ -1,8 +1,14 @@
 ---
 language: ruby
 cache: bundler
+
+matrix:
+  include:
+    - env: RAILS_VERSION=6.0.3.2
+    - env: RAILS_VERSION=5.2.4.3
+
 rvm:
-  - 2.6.3
+  - 2.7.1
 notifications:
   email: false
 jdk: openjdk11
