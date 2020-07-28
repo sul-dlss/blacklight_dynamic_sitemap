@@ -9,5 +9,11 @@ module BlacklightDynamicSitemap
         "\n  mount BlacklightDynamicSitemap::Engine => '/'\n"
       end
     end
+
+    def install_webpacker
+      return unless Rails.version.to_i == 6
+
+      rake 'webpacker:install'
+    end
   end
 end
