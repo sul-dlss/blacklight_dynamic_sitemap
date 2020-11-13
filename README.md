@@ -44,6 +44,9 @@ This gem offers several configuration options that can be configured in a Rails 
 
 See [engine.rb](https://github.com/sul-dlss/blacklight_dynamic_sitemap/blob/master/lib/blacklight_dynamic_sitemap/engine.rb) for available configurations.
 
+### Rails version compatibility note
+Note that the gemspec does not list a lower threshold for Rails version compatibility. This gem has been anecdotally demonstrated to work fine as low as Rails 4.2, but maintaining compatibility of the test suite with rails <5.0 was more complex than practical benefits warranted. Exercise caution when using with Rails <5.0.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake ci` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
