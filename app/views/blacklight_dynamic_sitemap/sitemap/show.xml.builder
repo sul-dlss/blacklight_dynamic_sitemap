@@ -6,10 +6,12 @@ xml.urlset(
   'xsi:schemaLocation' => 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd',
   'xmlns' => 'http://www.sitemaps.org/schemas/sitemap/0.9'
 ) do
+  config = BlacklightDynamicSitemap::Engine.config
   @sitemap_entries.each do |doc|
     xml.url do
-      xml.loc(main_app.solr_document_url(doc[BlacklightDynamicSitemap::Engine.config.unique_id_field]))
-      xml.lastmod(doc[BlacklightDynamicSitemap::Engine.config.last_modified_field])
+      xml.loc(main_app.solr_document_url(doc[config.unique_id_field]))
+      last_modified = doc[config.last_modified_field]
+      xml.lastmod(config.format_last_modified&.call(last_modified) || last_modified)
     end
   end
 end
