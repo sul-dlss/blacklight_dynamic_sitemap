@@ -12,13 +12,14 @@ module BlacklightDynamicSitemap
       return [] if id.length != exponent
 
       index_connection.select(
-        params: {
-          q: "{!prefix f=#{hashed_id_field} v=#{id}}",
+        params: show_params(id, {
+          q: '*:*',
+          fq: ["{!prefix f=#{hashed_id_field} v=#{id}}"],
           fl: [unique_id_field, last_modified_field].join(','),
           rows: 2_000_000, # Ensure that we do not page this result
           facet: false,
           defType: 'lucene'
-        }
+        })
       ).dig('response', 'docs')
     end
 
@@ -27,6 +28,14 @@ module BlacklightDynamicSitemap
     end
 
     private
+
+    def show_params(id, default_params)
+      engine_config.modify_show_params&.call(id, default_params) || default_params
+    end
+
+    def index_params(default_params)
+      engine_config.modify_index_params&.call(default_params) || default_params
+    end
 
     def index_connection
       @index_connection ||= Blacklight.default_index.connection
@@ -38,10 +47,10 @@ module BlacklightDynamicSitemap
 
     def max_documents
       key = 'blacklight_dynamic_sitemap.index_max_docs'
-      expiration = BlacklightDynamicSitemap::Engine.config.max_documents_expiration
+      expiration = engine_config.max_documents_expiration
       Rails.cache.fetch(key, expires_in: expiration) do
-        Blacklight.default_index.connection.select(
-          params: { q: '*:*', rows: 0, facet: false }
+        index_connection.select(
+          params: index_params({ q: '*:*', rows: 0, facet: false })
         )['response']['numFound']
       end
     end
