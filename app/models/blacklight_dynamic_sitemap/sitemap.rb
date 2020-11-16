@@ -7,6 +7,10 @@ module BlacklightDynamicSitemap
     delegate :hashed_id_field, :unique_id_field, :last_modified_field, to: :engine_config
 
     def get(id)
+      # if someone's hacking URLs (in ways that could potentially generate enormous requests),
+      # just return an empty response
+      return [] if id.length != exponent
+
       index_connection.select(
         params: {
           q: "{!prefix f=#{hashed_id_field} v=#{id}}",
