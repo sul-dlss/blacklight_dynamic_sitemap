@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in blacklight_dynamic_sitemap.gemspec
 gemspec
 
-gem 'rake', '~> 12.0'
-gem 'rspec', '~> 3.0'
 # BEGIN ENGINE_CART BLOCK
 # engine_cart: 2.3.0
 # engine_cart stanza: 0.10.0

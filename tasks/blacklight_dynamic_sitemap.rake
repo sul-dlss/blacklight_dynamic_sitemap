@@ -36,7 +36,7 @@ namespace :blacklight_dynamic_sitemap do
       solr.with_collection(name: 'blacklight-core', dir: File.join(File.expand_path('..', File.dirname(__FILE__)), 'solr', 'conf')) do
 
         within_test_app do
-          system 'RAILS_ENV=development rake blacklight:index:seed'
+          system 'RAILS_ENV=development bundle exec rake blacklight:index:seed'
           system "bundle exec rails s #{args[:rails_server_args]}"
         end
       end
