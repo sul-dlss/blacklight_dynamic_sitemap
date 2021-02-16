@@ -9,6 +9,8 @@ EngineCart.load_application!
 require 'rspec/rails'
 require 'capybara/rspec'
 
+BlacklightDynamicSitemap::Engine.config.cache_options = { force: true }
+
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
