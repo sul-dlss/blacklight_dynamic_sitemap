@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'engine_cart', '~> 2.0'
   spec.add_development_dependency 'rspec-rails'
   spec.add_development_dependency 'solr_wrapper'
+  spec.add_development_dependency 'rake'
 end
