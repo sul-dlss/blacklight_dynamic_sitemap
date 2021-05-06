@@ -27,11 +27,12 @@ Gem::Specification.new do |spec|
   # Rails <5.0 is not covered by the automated test suite (see `.github/workflows/ruby.yml`).
   # Anecdotally demonstrated to work fine on Rails as low as 4.2, but any lower version
   # threshold would be arbitrary.
-  spec.add_dependency 'rails', '<= 6.1'
+  spec.add_dependency 'rails', '<= 6.2'
   spec.add_dependency 'blacklight', '> 6.0'
 
   spec.add_development_dependency 'capybara'
   spec.add_development_dependency 'engine_cart', '~> 2.0'
   spec.add_development_dependency 'rspec-rails'
   spec.add_development_dependency 'solr_wrapper'
+  spec.add_development_dependency 'rake'
 end
