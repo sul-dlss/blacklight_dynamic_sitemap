@@ -10,7 +10,7 @@ task ci: ['blacklight_dynamic_sitemap:generate'] do
   SolrWrapper.wrap do |solr|
     solr.with_collection(name: 'blacklight-core', dir: File.join(File.expand_path('..', File.dirname(__FILE__)), 'solr', 'conf')) do
       within_test_app do
-        system 'RAILS_ENV=test rake blacklight:index:seed'
+        system 'RAILS_ENV=test bundle exec rake blacklight:index:seed'
       end
       Rake::Task['spec'].invoke
     end
