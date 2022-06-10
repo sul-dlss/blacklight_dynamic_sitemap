@@ -24,10 +24,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  # Rails <5.0 is not covered by the automated test suite (see `.github/workflows/ruby.yml`).
-  # Anecdotally demonstrated to work fine on Rails as low as 4.2, but any lower version
-  # threshold would be arbitrary.
-  spec.add_dependency 'rails', '<= 6.2'
+  spec.add_dependency 'rails'
   spec.add_dependency 'blacklight', '> 6.0'
 
   spec.add_development_dependency 'capybara'
