@@ -47,8 +47,8 @@ module BlacklightDynamicSitemap
 
     def max_documents
       key = 'blacklight_dynamic_sitemap.index_max_docs'
-      expiration = engine_config.max_documents_expiration
-      Rails.cache.fetch(key, expires_in: expiration) do
+      cache_options = engine_config.cache_options
+      Rails.cache.fetch(key, **cache_options) do
         index_connection.select(
           params: index_params({ q: '*:*', rows: 0, facet: false })
         )['response']['numFound']
