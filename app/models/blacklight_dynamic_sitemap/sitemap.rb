@@ -4,22 +4,18 @@ module BlacklightDynamicSitemap
   ##
   #
   class Sitemap
-    delegate :hashed_id_field, :unique_id_field, :last_modified_field, to: :engine_config
+    delegate :solr_endpoint, :hashed_id_field, :unique_id_field, :last_modified_field, to: :engine_config
 
     def get(id)
       # if someone's hacking URLs (in ways that could potentially generate enormous requests),
       # just return an empty response
       return [] if id.length != exponent
 
-      index_connection.select(
-        params: show_params(id, {
-          q: '*:*',
+      index_connection.public_send(solr_endpoint,
+        params: show_params(id, engine_config.default_params.merge({
           fq: ["{!prefix f=#{hashed_id_field} v=#{id}}"],
-          fl: [unique_id_field, last_modified_field].join(','),
-          rows: 2_000_000, # Ensure that we do not page this result
-          facet: false,
-          defType: 'lucene'
-        })
+          fl: [unique_id_field, last_modified_field].join(',')
+        }))
       ).dig('response', 'docs')
     end
 

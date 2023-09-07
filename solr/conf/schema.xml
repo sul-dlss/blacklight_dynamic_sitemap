@@ -7,10 +7,10 @@
   <uniqueKey>id</uniqueKey>
 
   <fields>
-    <field name="id" type="string" stored="true" indexed="true" multiValued="false" required="true"/>
+    <field name="id" type="string" stored="true" indexed="true" multiValued="false" required="true" docValues="true" />
     <field name="format" type="string" stored="true" indexed="true" multiValued="true" />
     <field name="_version_" type="long"     indexed="true"  stored="true"/>
-    <field name="timestamp" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
+    <field name="timestamp" type="date" indexed="true" stored="true" default="NOW" multiValued="false" docValues="true" />
 
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
@@ -55,7 +55,7 @@
 
     <dynamicField name="*_ss" type="string" stored="true" indexed="false" multiValued="false"/>
     <dynamicField name="*_ssm" type="string" stored="true" indexed="false" multiValued="true"/>
-    <dynamicField name="*_ssi" type="string" stored="true" indexed="true" multiValued="false"/>
+    <dynamicField name="*_ssi" type="string" stored="true" indexed="true" multiValued="false" docValues="true" />
     <dynamicField name="*_ssim" type="string" stored="true" indexed="true" multiValued="true"/>
 
     <dynamicField name="*_ssort" type="alphaSort" stored="false" indexed="true" multiValued="false"/>
