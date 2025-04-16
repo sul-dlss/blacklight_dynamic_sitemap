@@ -13,15 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         blacklight_version: ['~> 8.0']
-        ruby_version: ['2.7', '3.0', '3.1']
-        rails_version: ['7.0.7.2']
+        ruby_version: ['3.2', '3.3', '3.4']
+        rails_version: ['8.0.2']
         include:
-          - ruby_version: '3.1'
-            rails_version: '7.0.7.2'
+          - ruby_version: '3.3'
+            rails_version: '7.2.2.1'
             blacklight_version: '~> 7.0'
-          - ruby_version: '3.4'
-            rails_version: '8.0.2'
-            blacklight_version: '9.0.0.beta1'
     name: test (blacklight ${{ matrix.blacklight_version }} / ruby ${{ matrix.ruby_version }} / rails ${{ matrix.rails_version }})
     env:
       RAILS_VERSION: ${{ matrix.rails_version }}
